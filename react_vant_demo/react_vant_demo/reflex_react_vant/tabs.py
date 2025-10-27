@@ -1,7 +1,13 @@
 from typing import List, Union, Optional, Callable, Any, Dict
 from reflex.vars import Var
 from .base import ReactVantBase
+import reflex as rx
 
+def _on_change_spec(val: Union[int, str]):
+    return [val]
+
+def _on_click_spec():
+    return []
 
 class Tabs(ReactVantBase):
     """Tabs 标签页组件"""
@@ -61,10 +67,10 @@ class Tabs(ReactVantBase):
     
     # 事件
     # 切换标签时触发
-    on_change: Optional[Callable[[Union[int, str]], None]] = None
+    on_change: rx.EventHandler[_on_change_spec]
     
     # 点击标签时触发
-    on_click: Optional[Callable[[Union[int, str]], None]] = None
+    on_click: rx.EventHandler[_on_click_spec]
     
     # 点击禁用标签时触发
     on_disabled: Optional[Callable[[Union[int, str]], None]] = None
